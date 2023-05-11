@@ -3,8 +3,9 @@ mod channel;
 
 use channel::Channel;
 
-fn main() -> anyhow::Result<()> {
-    let mut channel = Channel::connect();
+#[tokio::main]
+async fn main() -> anyhow::Result<()> {
+    let mut channel = Channel::connect().await?;
 
     // get peer id
     // register status as listener
@@ -24,6 +25,10 @@ fn main() -> anyhow::Result<()> {
     // println!("Received: {}", msg);
 
     // socket.close(None)?;
+    // channel.close().await?;
 
-    channel.close()
+    println!("here");
+    channel.send();
+
+    Ok(())
 }
