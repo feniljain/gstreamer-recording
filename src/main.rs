@@ -1,15 +1,17 @@
-mod handler;
 mod channel;
+mod handler;
+mod model;
 
 use channel::Channel;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    let mut channel = Channel::connect().await?;
+    let mut _channel = Channel::connect().await?;
 
-    // get peer id
-    // register status as listener
-    // get all producers
+    // get peer id [x]
+    // register status as listener [x]
+    // get all producers [x]
+    // send start session for all of the consumers too
     // register consumers for all producers
     // register webrtc connection listener for each consumer?
     // start consuming using webrtcsrc
@@ -27,8 +29,10 @@ async fn main() -> anyhow::Result<()> {
     // socket.close(None)?;
     // channel.close().await?;
 
-    println!("here");
-    channel.send();
+    _channel.join_handle.await?;
+    // loop {}
+
+    // channel.close().await?;
 
     Ok(())
 }
