@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
 pub struct Peer {
-    id: String,
+    pub id: String,
     meta: Option<serde_json::Value>,
 }
 
